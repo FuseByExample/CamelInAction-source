@@ -27,7 +27,7 @@ import org.junit.Test;
 /**
  * Testing how to stop a route when its done using on completion.
  *
- * @version $Revision: 257 $
+ * @version $Revision: 333 $
  */
 public class ManualRouteWithOnCompletionTest extends CamelTestSupport {
 
@@ -73,11 +73,11 @@ public class ManualRouteWithOnCompletionTest extends CamelTestSupport {
         assertMockEndpointsSatisfied();
 
         // wait for the route to be done
-        notify.matches(5, TimeUnit.SECONDS);
+        boolean matches = notify.matches(5, TimeUnit.SECONDS);
+        assertTrue("Should match notifier", matches);
 
-        // we gotta wait just a little extra to stop
-        Thread.sleep(5000);
-
+        // we gotta wait just a little extra to stop, before querying status
+        Thread.sleep(1000);
         // it should have stopped itself
         assertTrue("Route should be stopped", context.getRouteStatus("manual").isStopped());
     }

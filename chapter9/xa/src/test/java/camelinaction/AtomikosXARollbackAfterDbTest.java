@@ -28,7 +28,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
- * @version $Revision: 214 $
+ * @version $Revision: 332 $
  */
 public class AtomikosXARollbackAfterDbTest extends CamelSpringTestSupport {
 
@@ -86,10 +86,10 @@ public class AtomikosXARollbackAfterDbTest extends CamelSpringTestSupport {
             public void configure() throws Exception {
                 from("activemq:queue:partners")
                     .transacted()
-                    .log("+++ before database +++")
+                    .log("*** before database ***")
                     .bean(PartnerServiceBean.class, "toSql")
                     .to("jdbc:myDataSource")
-                    .log("+++ after database +++")
+                    .log("*** after database ***")
                     .throwException(new IllegalArgumentException("Forced failure after DB"));
             }
         };
