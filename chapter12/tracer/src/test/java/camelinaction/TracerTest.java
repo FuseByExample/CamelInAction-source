@@ -24,7 +24,7 @@ import org.junit.Test;
 /**
  * Unit test how to use the Tracer.
  *
- * @version $Revision: 53 $
+ * @version $Revision: 327 $
  */
 public class TracerTest extends CamelTestSupport {
 
@@ -56,6 +56,10 @@ public class TracerTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
+                // must disable debugger to have tracer working when using CamelTestSupport
+                // this will be fixed in Camel 2.8.1
+                context.setDebugger(null);
+
                 from("file://target/rider/orders")
                         .tracing()
                         .wireTap("seda:audit")
