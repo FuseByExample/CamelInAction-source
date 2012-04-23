@@ -35,7 +35,7 @@ public class MyConsumer extends ScheduledPollConsumer {
 
     @Override
     // poll method will fire every 500 ms by default 
-    protected void poll() throws Exception {
+    protected int poll() throws Exception {
         Exchange exchange = endpoint.createExchange();
 
         // create a message body
@@ -50,7 +50,10 @@ public class MyConsumer extends ScheduledPollConsumer {
             if (exchange.getException() != null) {
                 getExceptionHandler().handleException("Error processing exchange", exchange, exchange.getException());
             }
-        }        
+        }
+
+        // we consumed 1 message
+        return 1;
     }
 
 }

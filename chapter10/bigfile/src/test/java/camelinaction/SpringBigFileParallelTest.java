@@ -25,7 +25,7 @@ import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * @version $Revision: 95 $
+ * @version $Revision: 320 $
  */
 public class SpringBigFileParallelTest extends CamelSpringTestSupport {
 
@@ -36,8 +36,8 @@ public class SpringBigFileParallelTest extends CamelSpringTestSupport {
 
         long start = System.currentTimeMillis();
 
-        System.out.println("Waiting to be done with 5 min timeout (use ctrl + c to stop)");
-        notify.matches(5 * 60, TimeUnit.SECONDS);
+        System.out.println("Waiting to be done with 2 min timeout (use ctrl + c to stop)");
+        notify.matches(2 * 60, TimeUnit.SECONDS);
 
         long delta = System.currentTimeMillis() - start;
         System.out.println("Took " + delta / 1000 + " seconds");

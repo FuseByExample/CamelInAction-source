@@ -28,7 +28,7 @@ import org.junit.Test;
  * Various unit tests which demonstrates using NotifyBuilder.
  * See also the <a href="http://camel.apache.org/notifybuilder.html">online documentation</a>
  *
- * @version $Revision: 155 $
+ * @version $Revision: 306 $
  */
 public class NotifyTest extends CamelTestSupport {
 
@@ -73,7 +73,7 @@ public class NotifyTest extends CamelTestSupport {
     public void testNotifyOr() throws Exception {
         // shows how to stack multiple expressions using binary operations (or)
         NotifyBuilder notify = new NotifyBuilder(context)
-                .from("seda:quote").whenReceived(1).or().whenFailed(1);
+                .from("seda:quote").whenReceived(1).or().whenFailed(1).create();
 
         template.sendBody("seda:quote", "Camel rocks");
         template.sendBody("seda:order", "123,2010-04-20'T'15:48:00,2222,3333");

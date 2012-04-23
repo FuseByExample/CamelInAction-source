@@ -24,12 +24,12 @@
   <groupId>camelinaction</groupId>
   <artifactId>chapter11-interceptor</artifactId>
   <packaging>jar</packaging>
-  <version>1.0</version>
+  <version>1.0.0</version>
   
   <parent>
     <artifactId>chapter11</artifactId>
     <groupId>com.camelinaction</groupId>
-    <version>1.0</version>
+    <version>1.0.0</version>
   </parent>
 
   <name>Camel in Action :: Chapter 11 :: A Custom Camel Interceptor</name>
@@ -43,6 +43,10 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-spring</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
     </dependency>
     <dependency>
       <groupId>log4j</groupId> 

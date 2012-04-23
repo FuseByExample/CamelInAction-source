@@ -6,11 +6,11 @@
     <parent>
         <artifactId>appendixc</artifactId>
         <groupId>com.camelinaction</groupId>
-        <version>1.0</version>
+        <version>1.0.0</version>
     </parent>
     <groupId>camelinaction</groupId>
     <artifactId>appendixc-consumer</artifactId>
-    <version>1.0</version>
+    <version>1.0.0</version>
     <name>Camel in Action :: Appendix C :: Consumer Template</name>
     <build>
         <plugins>
@@ -66,6 +66,11 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
+        </dependency>
+        
+         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
         </dependency>
     </dependencies>
 

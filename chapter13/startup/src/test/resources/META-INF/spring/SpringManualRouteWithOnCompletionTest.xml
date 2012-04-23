@@ -29,12 +29,40 @@
     <!-- the order bean contain all the business logic -->
     <bean id="inventoryService" class="camelinaction.InventoryService"/>
 
-    <!-- the route builder -->
-    <bean id="inventoryRoute" class="camelinaction.InventoryRoute"/>
+    <!-- processor to stop the route -->
+    <bean id="stopRouteProcessor" class="camelinaction.StopRouteProcessor">
+        <!-- name of route to stop -->
+        <constructor-arg index="0" value="manual"/>
+    </bean>
 
     <!-- the camel context -->
     <camelContext xmlns="http://camel.apache.org/schema/spring">
-        <routeBuilder ref="inventoryRoute"/>
+
+        <!--  use autoStartup=false to indicate this route should NOT be started when Camel starts -->
+        <route id="manual" autoStartup="false">
+            <from uri="file://target/inventory/manual?maxMessagesPerPoll=1"/>
+
+            <!-- on completion which will stop the route using the processor -->
+            <onCompletion>
+                <process ref="stopRouteProcessor"/>
+            </onCompletion>
+
+            <log message="Doing manual update with file ${file:name}"/>
+            <split>
+                <!-- split the body using a tokenizer -->
+                <tokenize token="\n"/>
+                <convertBodyTo type="camelinaction.inventory.UpdateInventoryInput"/>
+                <to uri="direct:update"/>
+            </split>
+        </route>
+
+        <!-- each splitted message will use this route -->
+        <route>
+            <from uri="direct:update"/>
+            <to uri="log:update"/>
+            <to uri="mock:update"/>
+        </route>
+
     </camelContext>
 
 </beans>

@@ -8,7 +8,7 @@
   <parent>
     <groupId>com.camelinaction</groupId>
     <artifactId>chapter1</artifactId>
-    <version>1.0</version>
+    <version>1.0.0</version>
   </parent>
 
   <artifactId>chapter1-file-copy</artifactId>
@@ -19,6 +19,11 @@
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>
     </dependency>
+    
+     <dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>slf4j-log4j12</artifactId>
+     </dependency>
   </dependencies>
 
 </project>

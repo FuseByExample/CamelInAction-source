@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.camelinaction</groupId>
         <artifactId>chapter9</artifactId>
-        <version>1.0</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>chapter9-xa</artifactId>
@@ -98,6 +98,11 @@
             <artifactId>spring-jdbc</artifactId>
             <version>${spring-version}</version>
             <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
         </dependency>
 
         <dependency>

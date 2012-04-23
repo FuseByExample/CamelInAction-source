@@ -20,7 +20,7 @@
 
   <groupId>com.camelinaction</groupId>
   <artifactId>parent</artifactId>
-  <version>1.0</version>
+  <version>1.0.0</version>
   <packaging>pom</packaging>
   <name>Camel in Action</name>
   <inceptionYear>2009</inceptionYear>
@@ -69,40 +69,19 @@
   </scm>
 
   <properties>
-    <activemq-version>5.3.2</activemq-version>
-    <camel-version>2.5.0</camel-version>
-    <cxf-version>2.2.11</cxf-version>
+    <activemq-version>5.4.2</activemq-version>
+    <camel-version>2.7.0</camel-version>
+    <cxf-version>2.3.3</cxf-version>
     <hsqldb-version>1.8.0.7</hsqldb-version>
     <junit-version>4.8.1</junit-version>
     <log4j-version>1.2.16</log4j-version>
-    <spring-version>3.0.4.RELEASE</spring-version>
-    <slf4j-version>1.6.1</slf4j-version>
+    <spring-version>3.0.5.RELEASE</spring-version>
+    <slf4j-version>1.5.11</slf4j-version>
     <xbean-version>3.4</xbean-version>
     <!-- use utf-8 encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
-
-  <profiles>
-      <profile>
-          <id>jdk1.5</id>
-          <activation>
-              <jdk>1.5</jdk>
-          </activation>
-          <dependencies>
-              <dependency>
-                  <groupId>javax.xml.bind</groupId>
-                  <artifactId>jaxb-api</artifactId>
-                  <version>2.1</version>
-              </dependency>
-              <dependency>
-                  <groupId>com.sun.xml.bind</groupId>
-                  <artifactId>jaxb-impl</artifactId>
-                  <version>2.1.12</version>
-              </dependency>
-          </dependencies>
-      </profile>
-  </profiles>
 
   <build>
     <defaultGoal>install</defaultGoal>
@@ -114,8 +93,8 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>2.3.2</version>
           <configuration>
-            <source>1.5</source>
-            <target>1.5</target>
+            <source>1.6</source>
+            <target>1.6</target>
             <maxmem>256M</maxmem>
           </configuration>
         </plugin>
@@ -395,6 +374,8 @@
         <artifactId>junit</artifactId>
         <version>${junit-version}</version>
       </dependency>
+
     </dependencies>   
   </dependencyManagement>
+
 </project>

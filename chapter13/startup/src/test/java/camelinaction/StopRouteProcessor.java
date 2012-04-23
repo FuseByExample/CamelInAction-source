@@ -14,28 +14,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package camelinaction.component;
+package camelinaction;
 
 import org.apache.camel.Exchange;
-import org.apache.camel.impl.DefaultProducer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.camel.Processor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
- * The HelloWorld producer.
+ * Processor to stop a route by its name
+ *
+ * @version $Revision$
  */
-public class MyProducer extends DefaultProducer {
-    private static final transient Logger LOG = LoggerFactory.getLogger(MyProducer.class);
-    private MyEndpoint endpoint;
+public class StopRouteProcessor implements Processor {
 
-    public MyProducer(MyEndpoint endpoint) {
-        super(endpoint);
-        this.endpoint = endpoint;
+    private final static Log LOG = LogFactory.getLog(StopRouteProcessor.class);
+
+    private final String name;
+
+    /**
+     * @param name route to stop
+     */
+    public StopRouteProcessor(String name) {
+        this.name = name;
     }
 
     public void process(Exchange exchange) throws Exception {
-    	LOG.info(exchange.getIn().getBody().toString());
-        System.out.println(exchange.getIn().getBody());    
+        // force stopping this route while we are routing an Exchange
+        // requires two steps:
+        // 1) unregister from the inflight registry
+        // 2) stop the route
+        LOG.info("Stopping route: " + name);
+        exchange.getContext().getInflightRepository().remove(exchange);
+        exchange.getContext().stopRoute(name);
     }
-
 }
