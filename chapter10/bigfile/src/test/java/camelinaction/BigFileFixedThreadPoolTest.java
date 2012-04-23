@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.file.GenericFile;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.After;
 import org.junit.Before;
@@ -30,7 +31,7 @@ import org.junit.Test;
 /**
  * Processing a big with concurrency using a custom thread pool created by the JDK.
  *
- * @version $Revision: 320 $
+ * @version $Revision: 325 $
  */
 public class BigFileFixedThreadPoolTest extends CamelTestSupport {
 
@@ -54,8 +55,8 @@ public class BigFileFixedThreadPoolTest extends CamelTestSupport {
 
     @Test
     public void testBigFile() throws Exception {
-        // when the file route is done
-        NotifyBuilder notify = new NotifyBuilder(context).from("file*").whenDone(1).create();
+        // when the first exchange is done
+        NotifyBuilder notify = new NotifyBuilder(context).whenDoneByIndex(0).create();
 
         long start = System.currentTimeMillis();
 

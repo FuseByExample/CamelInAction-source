@@ -19,20 +19,21 @@ package camelinaction;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.builder.NotifyBuilder;
+import org.apache.camel.component.file.GenericFile;
 import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * @version $Revision: 320 $
+ * @version $Revision: 325 $
  */
 public class SpringBigFileFixedThreadPoolTest extends CamelSpringTestSupport {
 
     @Test
     public void testBigFile() throws Exception {
-        // when the file route is done
-        NotifyBuilder notify = new NotifyBuilder(context).from("file*").whenDone(1).create();
+        // when the first exchange is done
+        NotifyBuilder notify = new NotifyBuilder(context).whenDoneByIndex(0).create();
 
         long start = System.currentTimeMillis();
 

@@ -20,19 +20,21 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.file.GenericFile;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
 /**
  * Processing a big with concurrency using the parallelProcessing option.
  *
- * @version $Revision: 320 $
+ * @version $Revision: 325 $
  */
 public class BigFileParallelTest extends CamelTestSupport {
 
     @Test
     public void testBigFile() throws Exception {
-        NotifyBuilder notify = new NotifyBuilder(context).whenDone(1).create();
+        // when the first exchange is done
+        NotifyBuilder notify = new NotifyBuilder(context).whenDoneByIndex(0).create();
 
         long start = System.currentTimeMillis();
 
